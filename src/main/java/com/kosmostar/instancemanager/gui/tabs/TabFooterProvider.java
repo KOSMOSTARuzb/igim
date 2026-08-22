@@ -18,4 +18,6 @@ public interface TabFooterProvider {
     default Integer doneButtonSize() {
         return null;
     }
+
+    default boolean renderBottomLine(){return true;}
 }

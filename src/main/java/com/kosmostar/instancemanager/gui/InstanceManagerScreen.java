@@ -35,6 +35,7 @@ public class InstanceManagerScreen extends Screen {
     private final TabManager tabManager = new TabManager(this::addRenderableWidget, this::removeWidget, tab -> this.refreshFooter(),tab -> {});
 
     protected final Tab[] tabs;
+    private boolean renderBottomSeparator = true;
 
     private @Nullable MenuTabBar tabNavigationBar;
     private final List<AbstractWidget> activeFooterWidgets = new ArrayList<>();
@@ -97,6 +98,7 @@ public class InstanceManagerScreen extends Screen {
         this.footerContainer.addChild(this.doneButton);
 
         this.layout.arrangeElements();
+        this.renderBottomSeparator = !(currentTab instanceof TabFooterProvider provider) || provider.renderBottomLine();
     }
 
     public void updateDoneButtonWidth(@Nullable Integer preferredWidth){
@@ -152,7 +154,8 @@ public class InstanceManagerScreen extends Screen {
     @Override
     public void extractRenderState(final GuiGraphicsExtractor graphics, final int xm, final int ym, final float a) {
         super.extractRenderState(graphics, xm, ym, a);
-        graphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - this.layout.getFooterHeight(), 0.0F, 0.0F, this.width, 2, 32, 2);
+        if(this.renderBottomSeparator)
+            graphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - this.layout.getFooterHeight(), 0.0F, 0.0F, this.width, 2, 32, 2);
     }
 
     @Override

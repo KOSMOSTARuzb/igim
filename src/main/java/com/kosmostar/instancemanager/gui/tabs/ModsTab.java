@@ -38,4 +38,9 @@ public class ModsTab extends GridLayoutTab implements TabFooterProvider {
     public @Nullable Integer doneButtonSize() {
         return 100;
     }
+
+    @Override
+    public boolean renderBottomLine() {
+        return true; // todo set this to false
+    }
 }
