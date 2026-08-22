@@ -34,6 +34,8 @@ public class InstanceManagerScreen extends Screen {
 
     private final TabManager tabManager = new TabManager(this::addRenderableWidget, this::removeWidget, tab -> this.refreshFooter(),tab -> {});
 
+    protected final Tab[] tabs;
+
     private @Nullable MenuTabBar tabNavigationBar;
     private final List<AbstractWidget> activeFooterWidgets = new ArrayList<>();
     private Button doneButton;
@@ -41,17 +43,18 @@ public class InstanceManagerScreen extends Screen {
     public InstanceManagerScreen(final Screen lastScreen) {
         super(TITLE);
         this.lastScreen = lastScreen;
+        this.tabs = new Tab[]{
+                new ModsTab(this),
+                new DownloaderTab(),
+                new SyncVaultTab(),
+                new SettingsTab()
+        };
     }
 
     @Override
     protected void init() {
         this.tabNavigationBar = MenuTabBar.builder(this.tabManager, this.width)
-                .addTabs(new Tab[]{
-                        new ModsTab(this),
-                        new DownloaderTab(),
-                        new SyncVaultTab(),
-                        new SettingsTab()
-                }).build();
+                .addTabs(this.tabs).build();
 
         this.addRenderableWidget(this.tabNavigationBar);
 
