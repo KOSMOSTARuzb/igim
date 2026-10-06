@@ -8,6 +8,8 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Path;
+
 public class InGameInstanceManager implements ModInitializer {
     public static final String MOD_ID = "igim";
 
@@ -19,6 +21,7 @@ public class InGameInstanceManager implements ModInitializer {
     public static Identifier id(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
+    public static Path vaultDir = Path.of(System.getProperty("user.home"), "." + MOD_ID + "_by_k");
 
     @Override
     public void onInitialize() {

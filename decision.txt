@@ -1,0 +1,16 @@
+*   **Base ($B$) $\in \{\emptyset, T, A\}$**
+    *   $\emptyset$ (**Absent**): The local instance has never tracked this entity.
+    *   $T$ (**Tombstone**): Consensus previously agreed the file was deleted.
+    *   $A$ (**Active**): Consensus previously recorded an active file with a valid hash.
+*   **Master ($M$) $\in \{\emptyset, T, A\}$**
+    *   $\emptyset$ (**Absent**): Master has no record (purged, wiped, or brand new).
+    *   $T$ (**Tombstone**): Master has marked the entity as deleted.
+    *   $A$ (**Active**): Master has an active version of the file.
+*   **Local ($L$) $\in \{\emptyset, A\}$**
+    *   $\emptyset$ (**Absent**): The file does not exist on disk.
+    *   $A$ (**Active**): The file exists on disk (even if 0 bytes).
+        *(Note: Physical filesystems have no concept of a "tombstone"; a file is either present or absent).*
+
+
+
+

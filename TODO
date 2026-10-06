@@ -1,0 +1,2 @@
+NORMALIZE NAMING: e.g. vault vs master
+Replace all the System.out.println with IGIM.LOGGER

@@ -8,6 +8,7 @@ package com.kosmostar.instancemanager.mod;
 
 import com.kosmostar.instancemanager.InGameInstanceManager;
 import com.kosmostar.instancemanager.registry.ModConfigRegistry;
+import com.kosmostar.instancemanager.sync.SyncPolicy;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.terraformersmc.modmenu.util.mod.fabric.CustomValueUtil;
 import net.fabricmc.loader.api.FabricLoader;
@@ -308,6 +309,10 @@ public class Mod {
         if (!configPaths.contains(path)) {
             configPaths.add(path);
         }
+    }
+
+    public boolean isReal(){
+        return this.isRealMod;
     }
 
     public enum Badge {
